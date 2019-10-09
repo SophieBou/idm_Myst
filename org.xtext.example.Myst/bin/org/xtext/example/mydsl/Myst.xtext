@@ -1,0 +1,58 @@
+grammar org.xtext.example.mydsl.Myst with org.eclipse.xtext.common.Terminals
+
+generate myst "http://www.xtext.org/example/mydsl/Myst"
+
+
+Program:
+	(csv=CSV parse=Parse calcul=Calcul metric=Metric);
+
+CSV:
+	'CSV' cvsfile=STRING;
+
+Parse:
+	 'parse' (variableCible=STRING)?;
+
+Calcul:
+	strategy = Strategy ',' algorithm=Algorithm;
+
+Strategy:
+	trainingTest = TrainingTest|crossValidation = CrossValidation;
+
+CrossValidation:
+	motcle='crossValidation';
+
+TrainingTest:
+	'trainingTest' ',' testRate=INT;
+
+Algorithm:
+	(LinearDiscriminantAnalysis|SupportVectorMachines|QuadraticDiscriminantAnalysis|KernelEstimation|Boosting|DecisionTree|NeutralNetwork|LearningVectorQuantization);
+
+LinearDiscriminantAnalysis:
+	motcle='linearDiscriminantAnalysis';
+
+SupportVectorMachines:
+	motcle='supportVectorMachines';
+
+QuadraticDiscriminantAnalysis:
+	motcle='quadraticDiscriminantAnalysis';
+
+KernelEstimation:
+	motcle='kernelEstimation';
+
+Boosting:
+	motcle='boosting';
+
+DecisionTree:
+	motcle='decisionTree';
+
+NeutralNetwork:
+	motcle='neutralNetwork';
+
+LearningVectorQuantization:
+	motcle='learningVectorQuantization';
+
+Metric:
+	(m1='showAccuracy'|m2='showRecall'|m3='showFMeasure'|m4='showPrecision'|m5='showFallOut'|m6='showTruePositiveRate'|m7='showTrueNegativeRate'|m8='showFalsePositiveRate'|m9='showFalseNegativeRate');	
+
+
+
